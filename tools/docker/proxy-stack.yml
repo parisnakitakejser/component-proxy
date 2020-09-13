@@ -7,6 +7,7 @@ services:
       - 9080:9080
     environment:
       COMPONENT_LOGGING_ENABLED: 1
+      COMPONENT_AUTH_ENABLED: 1
 
     networks:
       - component-proxy

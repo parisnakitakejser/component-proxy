@@ -17,4 +17,5 @@ Get proxy container for to support all my project with microservice containers i
 
 | Environment vars              | Required | Fallback           |
 | ----------------------------- | -------- | ------------------ |
+| COMPONENT_AUTH_ENABLED        | No       | None               |
 | COMPONENT_LOGGING_ENABLED     | No       | None               |
