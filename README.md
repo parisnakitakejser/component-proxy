@@ -16,5 +16,5 @@ Get proxy container for to support all my project with microservice containers i
 **System environments to set**
 
 | Environment vars              | Required | Fallback           |
-| ----------------------------- | ----------------------------- |
+| ----------------------------- | -------- | ------------------ |
 | COMPONENT_LOGGING_ENABLED     | No       | None               |
