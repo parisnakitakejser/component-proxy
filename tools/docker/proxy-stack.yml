@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: 192.168.1.216:5000/component/proxy:beta
+    ports:
+      - 9080:9080
+    environment:
+      COMPONENT_LOGGING_ENABLED: 1
+
+    networks:
+      - component-proxy
+
+networks:
+  component-proxy:
+    external: true
