@@ -19,3 +19,9 @@ Get proxy container for to support all my project with microservice containers i
 | ----------------------------- | -------- | ------------------ |
 | COMPONENT_AUTH_ENABLED        | No       | None               |
 | COMPONENT_LOGGING_ENABLED     | No       | None               |
+
+**Build new images**
+
+If you found eny bugs and want to build your own images, you can do it very quickly by using this command
+
+docker build -t component-proxy:{version} . --no-cache

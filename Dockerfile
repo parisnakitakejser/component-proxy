@@ -1,17 +1,24 @@
-FROM nginx:alpine-perl
+FROM nginx:alpine
 
 WORKDIR /app
 
-RUN echo "@edge http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
 RUN apk update
-RUN apk add nginx@edge nginx-mod-http-geoip@edge
+RUN apk add py3-pip
 
-RUN apk add --no-cache nginx-mod-http-perl
+COPY ./requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
+
+RUN mkdir upstreams
+RUN mkdir locations
+
+COPY . .
+RUN rm -rf venv
+RUN rm -rf .env
+RUN rm -rf tools
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./upstreams /app/upstreams
-COPY ./locations /app/locations
 
-CMD ["nginx", "-g", "daemon off;"]
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["sh", "entrypoint.sh"]
 
 EXPOSE 9080 9080
