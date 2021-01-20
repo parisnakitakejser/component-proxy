@@ -12,6 +12,10 @@ components = [{
     'env': 'COMPONENT_LOGGING_ENABLED',
     'upstream': 'component_logging',
     'path': 'logging'
+}, {
+    'env': 'COMPONENT_RECIPES_ENABLED',
+    'upstream': 'component_recipes',
+    'path': 'recipes'
 }]
 
 

@@ -6,6 +6,7 @@ services:
     ports:
       - 9080:9080
     environment:
+      COMPONENT_RECIPES_ENABLED: 0
       COMPONENT_LOGGING_ENABLED: 0
       COMPONENT_AUTH_ENABLED: 0
 
