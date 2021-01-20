@@ -3,10 +3,7 @@ version: 2.1
 workflows:
   build_and_test:
     jobs:
-      - test
       - build:
-          requires:
-            - test
           filters:
             branches:
               ignore: development
@@ -37,22 +34,6 @@ jobs:
           command: |
             echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
             docker push parisnk/$IMAGE_NAME:$CIRCLE_SHA1
-
-  test:
-    docker:
-      - image: circleci/python:3.8
-
-    steps:
-      - checkout
-      - setup_remote_docker
-
-      - run:
-          name: Build Docker pytest image
-          command: |
-            docker run -d --name testmongo -e 'MONGO_INITDB_ROOT_USERNAME=admin' -e 'MONGO_INITDB_ROOT_PASSWORD=secret' mongo:4.4
-            docker build -t unittest . -f .docker/Unittest/Dockerfile
-            docker run --rm --link testmongo -e 'MONGO_DATABASE=component-recipes' -e 'MONGO_HOST=testmongo' -e 'MONGO_PORT=27017' -e 'MONGO_USERNAME=admin' -e 'MONGO_PASSWORD=secret' -e 'MONGO_AUTH_SOURCE=admin' -e 'MONGO_MECHANISM=SCRAM-SHA-1' unittest
-            docker stop testmongo
 
   deploy_stable:
     docker:
